@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.kodilla.kodilla-hibernate.iml" filepath="$PROJECT_DIR$/.idea/modules/com.kodilla.kodilla-hibernate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.kodilla.kodilla-hibernate.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.kodilla.kodilla-hibernate.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.kodilla.kodilla-hibernate.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.kodilla.kodilla-hibernate.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kodilla_spring_hibernate.iml" filepath="$PROJECT_DIR$/kodilla_spring_hibernate.iml" />
+    </modules>
+  </component>
+</project>
