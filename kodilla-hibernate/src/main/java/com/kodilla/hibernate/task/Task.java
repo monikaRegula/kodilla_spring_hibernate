@@ -6,13 +6,14 @@ import javax.persistence.*;
 import javax.persistence.criteria.Fetch;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+
 @NamedQueries({
         @NamedQuery(
                 name = "task.retrieveLongTasks",
                 query = "FROM Task WHERE duration > 10"
-        )     ,
+        ),
         @NamedQuery(
-                name= "Task.retrieveShortTasks",
+                name = "Task.retrieveShortTasks",
                 query = "FROM Task WHERE duration <= 10"
         ),
         @NamedQuery(
@@ -22,8 +23,8 @@ import java.util.Date;
 })
 @NamedNativeQuery(
         name = "Task.retrieveTasksWithEnoughTime",
-        query = "SELECT * FROM TASKS"+
-        "WHERE DATEDIFF(DATE_ADD(CREATED,INTERVAL DURATION DAY), NOW() )>5",
+        query = "SELECT * FROM TASKS" +
+                "WHERE DATEDIFF(DATE_ADD(CREATED,INTERVAL DURATION DAY), NOW() )>5",
         resultClass = Task.class
 )
 @Entity//adnotacja mówi Hibernate że dane tej klasy mają być przechowywane w bazie danych
@@ -32,9 +33,9 @@ public final class Task {
     private int id;
     private String description;
     private Date created;
-        private int duration;
-        private TaskFinancialDeatils taskFinancialDeatils;
-        private TaskList taskList;
+    private int duration;
+    private TaskFinancialDeatils taskFinancialDeatils;
+    private TaskList taskList;
 
     public Task() {
     }
@@ -86,7 +87,7 @@ public final class Task {
     }
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="TASKS_FINANCIALS_ID")
+    @JoinColumn(name = "TASKS_FINANCIALS_ID")
     public TaskFinancialDeatils getTaskFinancialDeatils() {
         return taskFinancialDeatils;
     }
@@ -96,8 +97,12 @@ public final class Task {
     }
 
     @ManyToOne
-    @JoinColumn(name="TASKSLIST_ID")
-    public TaskList getTaskList() { return taskList; }
+    @JoinColumn(name = "TASKSLIST_ID")
+    public TaskList getTaskList() {
+        return taskList;
+    }
 
-    public void setTaskList(TaskList taskList) { this.taskList = taskList; }
+    public void setTaskList(TaskList taskList) {
+        this.taskList = taskList;
+    }
 }

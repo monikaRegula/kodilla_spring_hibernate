@@ -54,13 +54,13 @@ public class CompanyDaoTestSuite {
         Assert.assertNotEquals(0, greyMatterid);
 
         //CleanUp
-//        try {
-//            companyDao.deleteById(softwareMachineId);
-//            companyDao.deleteById(dataMaestresId);
-//            companyDao.deleteById(greyMatterid);
-//        } catch (Exception e) {
-//            //do nothing
-//        }
+        try {
+            companyDao.deleteById(softwareMachineId);
+            companyDao.deleteById(dataMaestresId);
+            companyDao.deleteById(greyMatterid);
+        } catch (Exception e) {
+            //do nothing
+        }
     }
 
 
@@ -93,9 +93,51 @@ public class CompanyDaoTestSuite {
         companyDao.save(greyMatter);
         int greyMatterid = greyMatter.getId();
 
-       // List<Employee> byLastName = employeeDao.searchByLastname("Smith");
-        //List<Company> byLastName = companyDao.searchByLastname("Smith");
+        employeeDao.save(johnSmith);
+        employeeDao.save(stephanieClarckson);
+        employeeDao.save(lindaKovalsky);
+
+
+        List<Employee> byLastName = employeeDao.findByLastname("Smith");
+        //List<Company> byLastName2 = companyDao.searchByLastName("Smith");
+       //then
+        Assert.assertEquals(1,byLastName.size());
+    }
+
+
+    @Test
+    public void testFindByNameCompanyFirst3Letters(){
+        //given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company greyMatter = new Company("Grey Matter");
+
+        softwareMachine.getEmployees().add(johnSmith);
+        dataMaesters.getEmployees().add(stephanieClarckson);
+        dataMaesters.getEmployees().add(lindaKovalsky);
+        greyMatter.getEmployees().add(johnSmith);
+        greyMatter.getEmployees().add(lindaKovalsky);
+
+        johnSmith.getCompanies().add(softwareMachine);
+        johnSmith.getCompanies().add(greyMatter);
+        stephanieClarckson.getCompanies().add(dataMaesters);
+        lindaKovalsky.getCompanies().add(dataMaesters);
+        lindaKovalsky.getCompanies().add(greyMatter);
+
+        //when
+        companyDao.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
+        companyDao.save(dataMaesters);
+        int dataMaestresId = dataMaesters.getId();
+        companyDao.save(greyMatter);
+        int greyMatterid = greyMatter.getId();
+
+        List<Company> searchBy3FIrstLetters = companyDao.findByName("Grey Matter");
+
         //then
-       // Assert.assertEquals(2,byLastName.size());
+        Assert.assertEquals(1,searchBy3FIrstLetters.size());
     }
 }

@@ -6,8 +6,8 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name="INVOICES")
+//@Entity
+//@Table(name="INVOICES")
 public class Invoice {
     private int id;
     private String number;
@@ -20,30 +20,35 @@ public class Invoice {
         this.number = number;
     }
 
-    @Id
-    @GeneratedValue
-    @NotNull
-    @Column(name="INVOICE_ID", unique = true)
-    public int getId() {
-        return id;
-    }
-
-    @Column(name="INVOICE_NUMBER")
-    public String getNumber() {
-        return number;
-    }
+//    @Id
+//    @GeneratedValue
+//    @NotNull
+//    @Column(name="INVOICE_ID", unique = true)
+//    public int getId() {
+//        return id;
+//    }
 //
-//    @OneToMany(
-//            targetEntity = Item.class,
-//            mappedBy = "Invoice",
-//            cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY
-//    )
-//    public List<Item> getItems() { return items; }
+//    @Column(name="INVOICE_NUMBER")
+//    public String getNumber() {
+//        return number;
+//    }
+
 
     private void setId(int id) { this.id = id; }
 
     private void setNumber(String number) { this.number = number; }
 
     private void setItems(List<Item> items) { this.items = items; }
+
+//    @OneToMany(
+//            targetEntity = Invoice.class,
+//            mappedBy = "items",
+//            cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY
+//    )
+
+    public List<Item> getItems() {
+        return items;
+    }
+
 }

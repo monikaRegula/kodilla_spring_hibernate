@@ -30,6 +30,7 @@ public class TaskDaoTestSuite {
         int id = task.getId();
         //Optional&lt;Task&gt; readTask = taskDao.findById(id);
         Optional<Task> readTask = taskDao.findById(id);
+        Assert.assertTrue(readTask.isPresent());
         //cleanUp
         taskDao.deleteById(id);
 
@@ -42,9 +43,9 @@ public class TaskDaoTestSuite {
         taskDao.save(task);
         int duration = task.getDuration();
         //when
-       // List<Task> readTask = taskDao.findByDuration(duration);
+        List<Task> readTask = taskDao.findByDuration(duration);
         //then
-        //Assert.assertEquals(1, readTask.size());
+        Assert.assertEquals(1, readTask.size());
     }
 
     @Test
@@ -58,7 +59,7 @@ public class TaskDaoTestSuite {
         //then
         Assert.assertNotEquals(0,id);
         //cleanup
-        //taskDao.deleteById(id);
+        taskDao.deleteById(id);
 
     }
 }

@@ -5,8 +5,8 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name="PRODUCTS")
+//@Entity
+//@Table(name="PRODUCTS")
 public final class Product {
     private int id;
     private String name;
@@ -19,19 +19,19 @@ public final class Product {
         this.name = name;
     }
 
-    @Id
-    @GeneratedValue
-    @NotNull
-    @Column(name="PRODUCT_ID", unique = true)
-    public int getId() {
-        return id;
-    }
-
-    @NotNull
-    @Column(name="PRODUCT_NAME")
-    public String getName() {
-        return name;
-    }
+//    @Id
+//    @GeneratedValue
+//    @NotNull
+//    @Column(name="PRODUCT_ID", unique = true)
+//    public int getId() {
+//        return id;
+//    }
+//
+//    @NotNull
+//    @Column(name="PRODUCT_NAME")
+//    public String getName() {
+//        return name;
+//    }
 
     private void setId(int id) {
         this.id = id;
@@ -41,11 +41,12 @@ public final class Product {
         this.name = name;
     }
 
-//    @ManyToOne
-//    @JoinColumn(name="ITEM_ID")
-//    public Item getItem() {
-//        return item;
-//    }
+
+//@ManyToOne
+//@JoinColumn(name="ITEMS_ITEM_ID")
+    public Item getItem() {
+        return item;
+    }
 
     private void setItem(Item item) {
         this.item = item;
